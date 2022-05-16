@@ -1,0 +1,40 @@
+.button {
+  text-align: center;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color .2s ease-out;
+
+  &:hover {
+    background-color: #625f5f;
+  }
+
+  .inner {
+    position: relative;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    line-height: 18px;
+    padding: 0 18px;
+    transition: none;
+    cursor: pointer;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    height: 10px;
+    margin-left: 10px;
+    transition: none;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    height: 10px;
+    margin-right: 10px;
+    transition: none;
+
+  }
+}
