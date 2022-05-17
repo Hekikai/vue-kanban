@@ -31,15 +31,15 @@ import { useRouter } from 'vue-router';
 import {  reactive, inject } from "vue";
 
 const router = useRouter();
+const authService = inject('authService');
 
 const state = reactive({
 	username: 'Username1234',
 	password: 'username1234'
 });
-const authService = inject('authService');
 
 const handleLogin = () => {
-
+		authService.login(state)
 }
 
 </script>

@@ -1,14 +1,19 @@
 <template>
 	<div :class="$style.table">
 		<v-card-header
-				:number-of-cards="2"
+				:number-of-cards="getMyCards.length"
 				header-text="On hold"
 				background-color="orange"
 		/>
-		<main :class="$style.main">
-			<v-card-info/>
+		<main>
+			<v-card-info
+					@handleChange="handleChangeInToStore($event, '0', updateCard, deleteCard)"
+					:cards="getMyCards"
+					:deleteFunction="deleteCard"
+					name="'onHold'"
+			/>
 		</main>
-		<v-card-footer/>
+		<v-card-footer :row="0" :addCard="addCard"/>
 	</div>
 </template>
 
@@ -16,7 +21,15 @@
 import VCardHeader from '../VCardHeader.vue';
 import VCardFooter from '../VCardFooter.vue';
 import VCardInfo from '../VCardInfo.vue';
+import { onMounted } from "vue";
+import { createTableStore } from "../../stores/createTableStore";
+import { handleChangeInToStore } from "../../utils/handleChangeInToStore";
 
+const useTableStore = createTableStore('onHoldStore', 0);
+const store = useTableStore();
+const {loadCards, addCard, deleteCard, getMyCards, updateCard} = store;
+
+onMounted(() => loadCards());
 </script>
 
 <style module lang="scss">
@@ -25,10 +38,6 @@ import VCardInfo from '../VCardInfo.vue';
 .table {
 	width: $table-size;
 	background-color: $card-bg-color;
-}
-
-.main {
-	margin: 10px;
 }
 
 </style>
