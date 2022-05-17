@@ -5,9 +5,8 @@
 				header-text="In progress"
 				background-color="blue"
 		/>
-		<main :class="$style.main">
-			<v-card-footer/>
-		</main>
+		<main :class="$style.main"></main>
+		<v-card-footer/>
 	</div>
 </template>
 

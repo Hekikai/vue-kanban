@@ -5,10 +5,8 @@
 				header-text="Approved"
 				background-color="green"
 		/>
-		<main :class="$style.main">
-
-			<v-card-footer/>
-		</main>
+		<main :class="$style.main"></main>
+		<v-card-footer/>
 	</div>
 </template>
 

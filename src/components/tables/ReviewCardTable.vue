@@ -6,9 +6,8 @@
 				background-color="yellow"
 		/>
 		<main :class="$style.main">
-
-			<v-card-footer/>
 		</main>
+		<v-card-footer/>
 	</div>
 </template>
 
