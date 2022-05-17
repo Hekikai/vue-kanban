@@ -7,7 +7,7 @@
 		/>
 		<main>
 			<v-card-info
-					@handleChange="handleChangeInToStore"
+					@handleChange="handleChangeInToStore($event, '0', updateCard, deleteCard)"
 					:cards="getMyCards"
 					:deleteFunction="deleteCard"
 					name="'onHold'"
@@ -23,14 +23,7 @@ import VCardFooter from '../VCardFooter.vue';
 import VCardInfo from '../VCardInfo.vue';
 import { onMounted } from "vue";
 import { createTableStore } from "../../stores/createTableStore";
-
-const handleChangeInToStore = (dragEvent) => {
-	// const {element} = dragEvent.added || dragEvent.removed;
-	// updateCard(element);
-	if(dragEvent.moved) {
-		updateCard(dragEvent.moved.element)
-	}
-}
+import { handleChangeInToStore } from "../../utils/handleChangeInToStore";
 
 const useTableStore = createTableStore('onHoldStore', 0);
 const store = useTableStore();

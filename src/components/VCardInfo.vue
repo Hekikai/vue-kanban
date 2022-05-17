@@ -5,6 +5,12 @@
 				:itemKey="name"
 				group="cardTable"
 				@change="handleChange"
+				v-bind="dragOptions"
+				:component-data="{
+					tag: 'div',
+					type: 'transition-group',
+					name: !drag ? 'flip-list': null
+				}"
 		>
 			<template #item="{element, index}">
 				<div class="list__item">
@@ -26,14 +32,24 @@
 <script setup>
 import VClose from '@/components/VClose.vue';
 import Draggable from 'vuedraggable';
+import { computed, ref } from "vue";
 
 const emits = defineEmits(['handleChange'])
-
 
 const handleChange = (dragEvent) => {
 	emits('handleChange', dragEvent);
 }
 
+const dragOptions = computed(() => {
+	return {
+		animation: 250,
+		group: 'description',
+		disabled: false,
+		ghostClass: "ghost"
+	}
+})
+
+const drag = ref(false);
 
 const props = defineProps({
 	cards: {
@@ -76,11 +92,17 @@ const props = defineProps({
 	padding: 10px;
 	min-height: 20px;
 
+	.ghost {
+		display: none;
+	}
+
 	&__item {
 		margin-top: 8px;
 		background-color: $li-bg-color;
 		padding: 3px 0 3px 5px;
 		position: relative;
+		cursor: grab;
+
 
 		&-id {
 			color: white;

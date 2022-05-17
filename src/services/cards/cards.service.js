@@ -2,7 +2,7 @@
 
 class CardsService {
 	PATH = 'https://trello.backend.tests.nekidaem.ru/api/v1/cards/';
-	TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MzAsInVzZXJuYW1lIjoiVXNlcm5hbWUxMjM0IiwiZXhwIjoxNjUyODAyNjUxLCJlbWFpbCI6InVzZXJuYW1lQG1haWwucnUiLCJvcmlnX2lhdCI6MTY1Mjc5OTA1MX0.cawDWmelyT7doEj8IB-SIDEhR01vRazgweWmoxNlcyw"
+	TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MzAsInVzZXJuYW1lIjoiVXNlcm5hbWUxMjM0IiwiZXhwIjoxNjUyODA3NjYxLCJlbWFpbCI6InVzZXJuYW1lQG1haWwucnUiLCJvcmlnX2lhdCI6MTY1MjgwNDA2MX0.7CjuddkKA9_X2P9bW-clqZvZFIoLAGfOlNgEm4x5a-c"
 
 	async getCardsByRowNumber(rowNumber) {
 		const res = await fetch(`${ this.PATH }?row=${ rowNumber }`, {
@@ -46,7 +46,6 @@ class CardsService {
 			},
 			body: JSON.stringify(dto)
 		})
-		return await res.json();
 	}
 }
 

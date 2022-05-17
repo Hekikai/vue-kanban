@@ -10,9 +10,7 @@ export const createTableStore = (name, row) => {
 			loadCards() {
 				cardsService.getCardsByRowNumber(row).then(data => {
 					data.forEach(item => {
-						if (!this.cards.find((elem) => elem.id === item.id)) {
-							this.cards.push(item);
-						}
+						this.cards.push(item);
 					})
 				});
 			},
@@ -27,9 +25,7 @@ export const createTableStore = (name, row) => {
 				})
 			},
 			updateCard(dto) {
-				cardsService.updateCard(dto).then((res) => {
-					console.log(res);
-				})
+				cardsService.updateCard(dto)
 			}
 		},
 		getters: {

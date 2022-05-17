@@ -7,6 +7,7 @@
 		/>
 		<main>
 			<v-card-info
+					@handleChange="handleChangeInToStore($event, '2', updateCard, deleteCard)"
 					:cards="getMyCards"
 					:deleteFunction="deleteCard"
 					name="'review'"
@@ -22,10 +23,11 @@ import VCardFooter from '../VCardFooter.vue';
 import VCardInfo from '../VCardInfo.vue';
 import { createTableStore } from "../../stores/createTableStore";
 import { onMounted } from "vue";
+import { handleChangeInToStore } from "../../utils/handleChangeInToStore";
 
 const useOnReviewStore = createTableStore('onReviewStore', 2);
 const store = useOnReviewStore();
-const {loadCards, addCard, deleteCard, getMyCards} = store;
+const {loadCards, addCard, deleteCard, updateCard, getMyCards} = store;
 
 onMounted(() => loadCards());
 </script>

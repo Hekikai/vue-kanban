@@ -7,7 +7,7 @@
 		/>
 		<main>
 			<v-card-info
-					@handleChange=""
+					@handleChange="handleChangeInToStore($event, '1', updateCard, deleteCard)"
 					:cards="getMyCards"
 					:deleteFunction="deleteCard"
 					name="'inProgress'"
@@ -23,11 +23,7 @@ import VCardFooter from '../VCardFooter.vue';
 import VCardInfo from '../VCardInfo.vue';
 import { createTableStore } from "../../stores/createTableStore";
 import { onMounted } from "vue";
-
-// const handleChangeInToStore = (dragEvent) => {
-// 	const {element} = dragEvent.added || dragEvent.removed;
-// 	updateCard(element);
-// }
+import { handleChangeInToStore } from "../../utils/handleChangeInToStore";
 
 const useInProgressStore = createTableStore('inProgressStore', 1);
 const store = useInProgressStore();
