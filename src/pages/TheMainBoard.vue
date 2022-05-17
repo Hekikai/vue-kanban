@@ -44,24 +44,22 @@ import ApprovedCardTable from '@/components/tables/ApprovedCardTable.vue';
 
 	.hold {
 		grid-area: hold;
+		align-self: start;
 	}
 
 	.progress {
 		grid-area: progress;
 		align-self: start;
-
 	}
 
 	.review {
 		grid-area: review;
 		align-self: start;
-
 	}
 
 	.approved {
 		grid-area: approved;
 		align-self: start;
-
 	}
 }
 

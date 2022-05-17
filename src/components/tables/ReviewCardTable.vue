@@ -1,20 +1,33 @@
 <template>
 	<div :class="$style.table">
 		<v-card-header
-				:number-of-cards="2"
+				:number-of-cards="getMyCards.length"
 				header-text="Needs Review"
 				background-color="yellow"
 		/>
-		<main :class="$style.main">
+		<main>
+			<v-card-info
+					:cards="getMyCards"
+					:deleteFunction="deleteCard"
+					name="'review'"
+			/>
 		</main>
-		<v-card-footer/>
+		<v-card-footer :row="2" :addCard="addCard"/>
 	</div>
 </template>
 
 <script setup>
 import VCardHeader from '../VCardHeader.vue';
 import VCardFooter from '../VCardFooter.vue';
+import VCardInfo from '../VCardInfo.vue';
+import { createTableStore } from "../../stores/createTableStore";
+import { onMounted } from "vue";
 
+const useOnReviewStore = createTableStore('onReviewStore', 2);
+const store = useOnReviewStore();
+const {loadCards, addCard, deleteCard, getMyCards} = store;
+
+onMounted(() => loadCards());
 </script>
 
 <style module lang="scss">
@@ -23,10 +36,6 @@ import VCardFooter from '../VCardFooter.vue';
 .table {
 	width: $table-size;
 	background-color: $card-bg-color;
-}
-
-.content {
-	padding: 20px;
 }
 
 </style>

@@ -1,7 +1,10 @@
 <template>
 	<footer ref="footer" class="footer">
 		<div v-if="isUserAddingCard" class="footer__form">
-			<textarea v-model="cardText" class="description"/>
+			<textarea
+					@keyup.enter="addNewCard"
+					v-model="cardText"
+					class="description"/>
 			<div class="footer__form__btns">
 				<button
 						class="button-add"
@@ -9,13 +12,14 @@
 				>
 					Добавить карточку
 				</button>
-				<button @click="isUserAddingCard = false" class="button-close">
-					<img :src="Cross" alt="Cross image" class="button-close-img">
-				</button>
+				<v-close :onClickFunction="switchAddCardForm"/>
 			</div>
 		</div>
-		<div v-else class="button">
-			<button @click="isUserAddingCard = true" class="inner">
+		<div
+				v-else
+				@click="switchAddCardForm"
+				class="button">
+			<button class="inner">
 				Добавить карточку
 			</button>
 		</div>
@@ -23,17 +27,25 @@
 </template>
 
 <script setup>
-import Cross from '@/assets/close.png';
+import VClose from '@/components/VClose.vue';
 import { ref } from "vue";
 
 const props = defineProps({
 	addCard: {
 		type: Function
+	},
+	row: {
+		type: Number,
+		required: true
 	}
 })
 
 const isUserAddingCard = ref(false);
 const cardText = ref('');
+
+const switchAddCardForm = () => {
+	isUserAddingCard.value = !isUserAddingCard.value;
+}
 
 const addNewCard = () => {
 	if (cardText.value === '') {
@@ -43,7 +55,7 @@ const addNewCard = () => {
 	}
 
 	const cardToAdd = {
-		row: '0',
+		row: props.row,
 		text: cardText.value
 	}
 	props.addCard(cardToAdd);
@@ -70,17 +82,6 @@ const addNewCard = () => {
 			cursor: pointer;
 			color: white;
 			padding: 5px 20px;
-		}
-
-		.button-close {
-			border: none;
-			background-color: transparent;
-			cursor: pointer;
-			margin-left: 10px;
-			vertical-align: center;
-
-			&-img {
-			}
 		}
 
 		.description {

@@ -1,14 +1,19 @@
 <template>
 	<div :class="$style.table">
 		<v-card-header
-				:number-of-cards="cards.length"
+				:number-of-cards="getMyCards.length"
 				header-text="On hold"
 				background-color="orange"
 		/>
-		<main :class="$style.main">
-			<v-card-info :cards="cards"/>
+		<main>
+			<v-card-info
+					@handleChange="handleChangeInToStore"
+					:cards="getMyCards"
+					:deleteFunction="deleteCard"
+					name="'onHold'"
+			/>
 		</main>
-		<v-card-footer :addCard="addOnHoldCard"/>
+		<v-card-footer :row="0" :addCard="addCard"/>
 	</div>
 </template>
 
@@ -16,16 +21,22 @@
 import VCardHeader from '../VCardHeader.vue';
 import VCardFooter from '../VCardFooter.vue';
 import VCardInfo from '../VCardInfo.vue';
-import { useOnHoldStore } from "../../stores/onHoldCards";
 import { onMounted } from "vue";
-import { storeToRefs } from "pinia";
+import { createTableStore } from "../../stores/createTableStore";
 
-const store = useOnHoldStore();
-const {cards} = storeToRefs(store);
-const {addOnHoldCard} = store;
+const handleChangeInToStore = (dragEvent) => {
+	// const {element} = dragEvent.added || dragEvent.removed;
+	// updateCard(element);
+	if(dragEvent.moved) {
+		updateCard(dragEvent.moved.element)
+	}
+}
 
-onMounted(() => store.loadCards())
+const useTableStore = createTableStore('onHoldStore', 0);
+const store = useTableStore();
+const {loadCards, addCard, deleteCard, getMyCards, updateCard} = store;
 
+onMounted(() => loadCards());
 </script>
 
 <style module lang="scss">
@@ -34,10 +45,6 @@ onMounted(() => store.loadCards())
 .table {
 	width: $table-size;
 	background-color: $card-bg-color;
-}
-
-.main {
-	margin: 10px;
 }
 
 </style>
