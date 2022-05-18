@@ -3,7 +3,6 @@
 		<draggable
 				:list="cards"
 				:itemKey="name"
-				group="cardTable"
 				@change="handleChange"
 				v-bind="dragOptions"
 				tag="transition-group"
@@ -12,11 +11,11 @@
 					type: 'transition-group',
 					name: !drag ? 'flip-list': null
 				}"
-				@start="drag = true"
-				@end="drag = false"
+
+				@dragend="$event.preventDefault()"
 		>
-			<template #item="{element, index}" :key="name">
-				<li :key="index" class="list__item">
+			<template #item="{element, index}">
+				<li :key="element.id" class="list__item">
 					<span class="list__item-id">
 						id:
 						<span class="list__item-text">
@@ -97,10 +96,9 @@ const props = defineProps({
 .list {
 	padding: 10px;
 	min-height: 20px;
-	transition: height 0.2s ease-out;
 
 	.flip-list-move {
-		transition: transform 0.2s;
+		transition: transform 0.5s;
 	}
 
 	.no-move {

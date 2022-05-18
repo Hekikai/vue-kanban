@@ -4,7 +4,7 @@ import router from "../../router";
 
 class CardsService {
 	PATH = 'https://trello.backend.tests.nekidaem.ru/api/v1/cards/';
-	TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MzAsInVzZXJuYW1lIjoiVXNlcm5hbWUxMjM0IiwiZXhwIjoxNjUyODU0MTA0LCJlbWFpbCI6InVzZXJuYW1lQG1haWwucnUiLCJvcmlnX2lhdCI6MTY1Mjg1MDUwNH0.rlEKh_lNgEO74Jgbe1UbkzG8tDrTa2yM36SN_zs7AAo"
+	TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MzAsInVzZXJuYW1lIjoiVXNlcm5hbWUxMjM0IiwiZXhwIjoxNjUyODg1MTgyLCJlbWFpbCI6InVzZXJuYW1lQG1haWwucnUiLCJvcmlnX2lhdCI6MTY1Mjg4MTU4Mn0.2iv0Ix_hDdRPew1F6n1mBSrHxz2tEF_huhQovnPnLfY"
 
 	// TOKEN = tokenService.getAccessToken();
 

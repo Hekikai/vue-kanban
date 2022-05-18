@@ -4,7 +4,7 @@ class AuthService {
 	PATH = 'https://trello.backend.tests.nekidaem.ru/api/v1/';
 
 	// I get 405 error from POST query. It redirects me to the same url
-	// but automatically uses GET query.
+	// and automatically uses GET query.
 	// IDK how to fix it :/
 	async register(dto) {
 		try {
@@ -13,6 +13,7 @@ class AuthService {
 				headers: {
 					'Content-Type': 'application/json',
 				},
+				redirect: "follow",
 				body: JSON.stringify(dto)
 			})
 			const data = await res.json();
@@ -22,6 +23,7 @@ class AuthService {
 			}
 			TokenService.setUser(user);
 			TokenService.updateAccessToken(data.token);
+
 		} catch (e) {
 			console.log(e);
 			throw new Error(e.message);
@@ -35,6 +37,7 @@ class AuthService {
 			headers: {
 				'Content-Type': 'application/json'
 			},
+			redirect: "manual",
 			body: JSON.stringify(dto)
 		})
 		const data = await res.json();

@@ -36,7 +36,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import {  reactive, inject } from "vue";
+import { reactive, inject } from "vue";
 
 const router = useRouter();
 const authService = inject('authService');
@@ -47,7 +47,9 @@ const state = reactive({
 });
 
 const handleLogin = () => {
-		authService.login(state)
+	authService.login(state).then((res) => {
+		// router.push({path: '/kanban'})
+	})
 }
 
 </script>
@@ -94,7 +96,6 @@ const handleLogin = () => {
 		.form-button {
 			background-color: #1F4287;
 			padding: 10px 20px;
-			//margin-top: 10px;
 			border: none;
 			color: white;
 			cursor: pointer;

@@ -34,10 +34,7 @@ onMounted(() => loadCards());
 
 <style module lang="scss">
 @import '../../style/variables';
+@import '../../style/mixins';
 
-.table {
-	width: $table-size;
-	background-color: $card-bg-color;
-}
-
+@include table-settings;
 </style>
