@@ -25,7 +25,7 @@ export const createTableStore = (name, row) => {
 				})
 			},
 			updateCard(dto) {
-				cardsService.updateCard(dto)
+				cardsService.updateCard(dto);
 			}
 		},
 		getters: {

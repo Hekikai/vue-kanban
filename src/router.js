@@ -7,7 +7,7 @@ const routes = [
 	{
 		path: '/',
 		redirect: {
-			name: 'TheRegistration'
+			name: 'TheLogin'
 		}
 	},
 	{

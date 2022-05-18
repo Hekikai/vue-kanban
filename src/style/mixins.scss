@@ -1,0 +1,6 @@
+@import './variables';
+
+@mixin table-settings {
+  width: $table-size;
+  background-color: $card-bg-color;
+}

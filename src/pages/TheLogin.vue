@@ -15,12 +15,20 @@
 						required
 						placeholder="Enter your password"
 				>
-				<button
-						class="form-button"
-						@click="handleLogin"
-				>
-					Login
-				</button>
+				<div class="buttons">
+					<button
+							class="form-button"
+							@click="handleLogin"
+					>
+						Login
+					</button>
+					<button
+							class="form-button"
+							@click="router.push({path: '/registration'})"
+					>
+						Are you new?
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -28,7 +36,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import {  reactive, inject } from "vue";
+import { reactive, inject } from "vue";
 
 const router = useRouter();
 const authService = inject('authService');
@@ -39,7 +47,9 @@ const state = reactive({
 });
 
 const handleLogin = () => {
-		authService.login(state)
+	authService.login(state).then((res) => {
+		// router.push({path: '/kanban'})
+	})
 }
 
 </script>
@@ -77,10 +87,15 @@ const handleLogin = () => {
 		padding-top: 20px;
 		width: 250px;
 
+		.buttons {
+			display: flex;
+			gap: 35px;
+			margin-top: 10px;
+		}
+
 		.form-button {
 			background-color: #1F4287;
 			padding: 10px 20px;
-			margin-top: 10px;
 			border: none;
 			color: white;
 			cursor: pointer;

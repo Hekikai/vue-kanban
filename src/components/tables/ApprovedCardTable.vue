@@ -2,8 +2,8 @@
 	<div :class="$style.table">
 		<v-card-header
 				:number-of-cards="getMyCards.length"
-				header-text="Approved"
-				background-color="green"
+				header-text="APPROVED"
+				background-color="#50b467"
 		/>
 		<main>
 			<v-card-info
@@ -34,10 +34,7 @@ onMounted(() => loadCards());
 
 <style module lang="scss">
 @import '../../style/variables';
+@import '../../style/mixins';
 
-.table {
-	width: $table-size;
-	background-color: $card-bg-color;
-}
-
+@include table-settings;
 </style>

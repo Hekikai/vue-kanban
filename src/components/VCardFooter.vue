@@ -2,9 +2,11 @@
 	<footer ref="footer" class="footer">
 		<div v-if="isUserAddingCard" class="footer__form">
 			<textarea
+					ref="textarea"
 					@keyup.enter="addNewCard"
 					v-model="cardText"
-					class="description"/>
+					class="description"
+					placeholder="Ввести заголовок для этой карточки"/>
 			<div class="footer__form__btns">
 				<button
 						class="button-add"
@@ -42,6 +44,7 @@ const props = defineProps({
 
 const isUserAddingCard = ref(false);
 const cardText = ref('');
+const textarea = ref();
 
 const switchAddCardForm = () => {
 	isUserAddingCard.value = !isUserAddingCard.value;
@@ -50,7 +53,7 @@ const switchAddCardForm = () => {
 const addNewCard = () => {
 	if (cardText.value === '') {
 		alert('Your card must have at least 1 symbol to be added!');
-		isUserAddingCard.value = false;
+		textarea.value.focus();
 		return;
 	}
 
@@ -78,7 +81,7 @@ const addNewCard = () => {
 
 		.button-add {
 			border: none;
-			background-color: #6F4E37;
+			background-color: #5f6161;
 			cursor: pointer;
 			color: white;
 			padding: 5px 20px;
@@ -87,6 +90,9 @@ const addNewCard = () => {
 		.description {
 			width: 100%;
 			height: 75px;
+			background-color: #4f4f4f;
+			border: none;
+			color: white
 		}
 	}
 }

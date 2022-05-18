@@ -2,8 +2,8 @@
 	<div :class="$style.table">
 		<v-card-header
 				:number-of-cards="getMyCards.length"
-				header-text="On hold"
-				background-color="orange"
+				header-text="ON HOLD"
+				background-color="#ee854b"
 		/>
 		<main>
 			<v-card-info
@@ -34,10 +34,7 @@ onMounted(() => loadCards());
 
 <style module lang="scss">
 @import '../../style/variables';
+@import '../../style/mixins';
 
-.table {
-	width: $table-size;
-	background-color: $card-bg-color;
-}
-
+@include table-settings;
 </style>
