@@ -6,24 +6,30 @@
 				group="cardTable"
 				@change="handleChange"
 				v-bind="dragOptions"
+				tag="transition-group"
 				:component-data="{
-					tag: 'div',
+					tag: 'ul',
 					type: 'transition-group',
 					name: !drag ? 'flip-list': null
 				}"
+				@start="drag = true"
+				@end="drag = false"
 		>
-			<template #item="{element, index}">
-				<div class="list__item">
+			<template #item="{element, index}" :key="name">
+				<li :key="index" class="list__item">
 					<span class="list__item-id">
-						id: {{ element.id }}
+						id:
+						<span class="list__item-text">
+							{{ element.id }}
+						</span>
 					</span>
 					<br>
-					<span>
+					<span class="list__item-text">
 						{{ element.text }}
 					</span>
 					<v-close class="list__item-button"
 									 @click="deleteFunction(element.id, index)"/>
-				</div>
+				</li>
 			</template>
 		</draggable>
 	</div>
@@ -34,7 +40,7 @@ import VClose from '@/components/VClose.vue';
 import Draggable from 'vuedraggable';
 import { computed, ref } from "vue";
 
-const emits = defineEmits(['handleChange'])
+const emits = defineEmits(['handleChange']);
 
 const handleChange = (dragEvent) => {
 	emits('handleChange', dragEvent);
@@ -91,9 +97,19 @@ const props = defineProps({
 .list {
 	padding: 10px;
 	min-height: 20px;
+	transition: height 0.2s ease-out;
+
+	.flip-list-move {
+		transition: transform 0.2s;
+	}
+
+	.no-move {
+		transition: transform 0s;
+	}
 
 	.ghost {
-		display: none;
+		opacity: 0;
+		background: none;
 	}
 
 	&__item {
@@ -103,13 +119,12 @@ const props = defineProps({
 		position: relative;
 		cursor: grab;
 
-
 		&-id {
 			color: white;
 		}
 
 		&-text {
-			color: #6F4E37;
+			color: #4e5053;
 		}
 
 		&-button {

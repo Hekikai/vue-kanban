@@ -24,7 +24,7 @@ import ApprovedCardTable from '@/components/tables/ApprovedCardTable.vue';
 		"hold progress review approved";
 	grid-template-columns: repeat(3, minmax(min-content, 1fr)) auto;
 	grid-template-rows: minmax(auto, max-content);
-	height: 100%;
+	min-height: 100vh;
 	padding: 50px;
 	background-color: $main-bg-color;
 

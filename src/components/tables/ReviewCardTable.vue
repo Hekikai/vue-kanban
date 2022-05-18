@@ -2,8 +2,8 @@
 	<div :class="$style.table">
 		<v-card-header
 				:number-of-cards="getMyCards.length"
-				header-text="Needs Review"
-				background-color="yellow"
+				header-text="NEEDS REVIEW"
+				background-color="#f0cd56"
 		/>
 		<main>
 			<v-card-info

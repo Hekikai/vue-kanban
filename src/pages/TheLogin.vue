@@ -15,12 +15,20 @@
 						required
 						placeholder="Enter your password"
 				>
-				<button
-						class="form-button"
-						@click="handleLogin"
-				>
-					Login
-				</button>
+				<div class="buttons">
+					<button
+							class="form-button"
+							@click="handleLogin"
+					>
+						Login
+					</button>
+					<button
+							class="form-button"
+							@click="router.push({path: '/registration'})"
+					>
+						Are you new?
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -77,10 +85,16 @@ const handleLogin = () => {
 		padding-top: 20px;
 		width: 250px;
 
+		.buttons {
+			display: flex;
+			gap: 35px;
+			margin-top: 10px;
+		}
+
 		.form-button {
 			background-color: #1F4287;
 			padding: 10px 20px;
-			margin-top: 10px;
+			//margin-top: 10px;
 			border: none;
 			color: white;
 			cursor: pointer;
